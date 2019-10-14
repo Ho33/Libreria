@@ -2,8 +2,11 @@ package Vista;
 
 import java.awt.CardLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -28,7 +31,7 @@ public class libUI extends JFrame {
 	private final JLabel lblLaLibreriaSin = getAddbook().addImage("/lib.png");
 	protected infoLibros info;
 	protected JButton editar = new JButton();
-	
+
 	/**
 	 * Create the frame.
 	 */
@@ -61,8 +64,7 @@ public class libUI extends JFrame {
 		this.contentPane.add(showBook, "showbook");
 		incluirItem(jmenuAlta, itemAddBook);
 		incluirItem(jmenuLista, itemListado);
-		
-		
+
 	}
 
 	private void incluirItem(JMenu menu, JMenuItem item) {
@@ -70,13 +72,15 @@ public class libUI extends JFrame {
 		item.setBackground(Color.WHITE);
 		menu.add(item);
 	}
-	
-	public String[][] getData(){
+
+	public String[][] getData() {
 		return showBook.getData();
 	}
+
 	public void rellenarLib(String[][] libro) {
 		this.showBook.rellenarLibro(libro);
 	}
+
 	public void deselectedEverything() {
 		addBook.disableField();
 	}
@@ -84,6 +88,7 @@ public class libUI extends JFrame {
 	public String getCheckBoxTipe() {
 		return addBook.getCheckBoxTipe();
 	}
+
 	public String getCheckBoxStatus() {
 		return addBook.getCheckBoxStatus();
 	}
@@ -123,6 +128,5 @@ public class libUI extends JFrame {
 	public JButton getEditar() {
 		return editar;
 	}
-	
-	
+
 }

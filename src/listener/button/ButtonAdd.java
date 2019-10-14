@@ -48,7 +48,7 @@ public class ButtonAdd implements ActionListener {
 				ui.getCheckBoxStatus(), ui.getAddbook().getSpnCantidad().getValue().toString());
 		ui.getAddbook().getTxtInfo().setText("añadido");
 	}
-
+	
 	private static boolean isWord(String word) {
 		if (word.isEmpty()) {
 			return false;

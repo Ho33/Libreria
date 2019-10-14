@@ -9,6 +9,11 @@ public class Libreria {
 	public Libreria() {
 		super();
 		this.libreria = new ArrayList<Libro>();
+		this.addLB("hola", "adios", "asdfqwerbasd1", Tema.Poesia, "150", "150", "Cartone", "nuevo", "15");
+		this.addLB("hola", "adios", "asdfqwergafd1", Tema.Poesia, "150", "150", "Cartone", "nuevo", "15");
+		this.addLB("hola", "adios", "as5fqwergasd1", Tema.Poesia, "150", "150", "Cartone", "nuevo", "15");
+		this.addLB("hola", "adios", "asdfxwergasd1", Tema.Poesia, "150", "150", "Cartone", "nuevo", "15");
+		this.addLB("hola", "adios", "asdfzwergasd1", Tema.Poesia, "150", "150", "Cartone", "nuevo", "15");
 	}
 
 	public void addLB(String titulo, String autor, String isbn, Tema tema, String numeroPag, String precio,
