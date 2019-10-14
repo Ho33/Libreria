@@ -53,6 +53,8 @@ public class Libro {
 		Libro other = (Libro) obj;
 		return isbn.equals(other.isbn);
 	}
+	
+	
 
 	public String getTitulo() {
 		return titulo;
@@ -95,6 +97,47 @@ public class Libro {
 	public void setCantidad(String cantidad) {
 		this.cantidad = cantidad;
 	}
+
+
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
+	}
+
+
+	public void setAutor(String autor) {
+		this.autor = autor;
+	}
+
+
+	public void setIsbn(String isbn) {
+		this.isbn = isbn;
+	}
+
+
+	public void setTema(Tema tema) {
+		this.tema = tema;
+	}
+
+
+	public void setNumeroPag(String numeroPag) {
+		this.numeroPag = numeroPag;
+	}
+
+
+	public void setPrecio(String precio) {
+		this.precio = precio;
+	}
+
+
+	public void setFormato(String formato) {
+		this.formato = formato;
+	}
+
+
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
+	
 	
 	
 }

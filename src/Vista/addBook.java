@@ -51,6 +51,7 @@ public class addBook extends JPanel{
 	private ButtonGroup status;
 	private JSpinner spnCantidad;
 	private JLabel lblPrecio;
+	private JButton btnModificar;
 
 	/**
 	 * Create the panel.
@@ -267,9 +268,12 @@ public class addBook extends JPanel{
 		titlePanel.setLayout(gl_titlePanel);
 		setLayout(groupLayout);
 		setBackground(Color.cyan);
-		btnPanel.setLayout(new GridLayout(0, 2, 0, 0));
+		btnPanel.setLayout(new GridLayout(0, 3, 0, 0));
 		btnPanel.add(btnAltas);
 		btnPanel.add(btnNuevas);
+		
+		btnModificar = new JButton("MODIFICAR");
+		btnPanel.add(btnModificar);
 		tipe = new ButtonGroup();
 		tipe.add(chkCartone);
 		tipe.add(chckbxTapaDura);
@@ -281,6 +285,8 @@ public class addBook extends JPanel{
 		soloNumeros(txtNpag);
 		soloNumeros(txtNpag);
 			}
+	
+	
 	public void soloNumeros(Component component) {
 		component.addKeyListener(new KeyAdapter() {
 			public void keyTyped(KeyEvent e) {
@@ -456,4 +462,9 @@ public class addBook extends JPanel{
 	public ButtonGroup getStatus() {
 		return status;
 	}
+
+	public JButton getBtnModificar() {
+		return btnModificar;
+	}
+	
 }

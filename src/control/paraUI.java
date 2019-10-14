@@ -1,7 +1,5 @@
 package control;
 
-import java.awt.Color;
-
 import javax.swing.ListSelectionModel;
 
 import Vista.libUI;
@@ -9,11 +7,11 @@ import listener.button.ButtonAdd;
 import listener.button.ButtonAddC;
 import listener.button.ButtonDelete;
 import listener.button.ButtonExit;
+import listener.button.ButtonModificar;
 import listener.button.ButtonMostrar;
 import listener.button.ButtonNew;
 import listener.item.ActionItemAddBook;
 import listener.item.ActionItemShowBook;
-import listener.table.ListenerJtable;
 import listener.txtField.TxtISBN;
 
 public class paraUI extends libUI {
@@ -36,8 +34,7 @@ public class paraUI extends libUI {
 		getShowBook().getBtnMostrar().addActionListener(new ButtonMostrar(this));
 		getShowBook().getBtnAddLibro().addActionListener(new ButtonAddC(this));
 		getAddbook().getTxtISBN().addKeyListener(new TxtISBN(this));
-//		modelo = getShowBook().getTableLibros().getSelectionModel();
-//		modelo.addListSelectionListener(new ListenerJtable(this));
+		getAddbook().getBtnModificar().addActionListener(new ButtonModificar(this));
 	}
 
 	public void fillRow() {
