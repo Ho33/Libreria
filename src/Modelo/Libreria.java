@@ -9,16 +9,16 @@ public class Libreria {
 	public Libreria() {
 		super();
 		this.libreria = new ArrayList<Libro>();
-		this.addLB("hola", "adios", "asdfqwerbasd1", Tema.Poesia, "150", "150", "Cartone", "nuevo", "15");
-		this.addLB("hola", "adios", "asdfqwergafd1", Tema.Poesia, "150", "150", "Cartone", "nuevo", "15");
-		this.addLB("hola", "adios", "as5fqwergasd1", Tema.Poesia, "150", "150", "Cartone", "nuevo", "15");
-		this.addLB("hola", "adios", "asdfxwergasd1", Tema.Poesia, "150", "150", "Cartone", "nuevo", "15");
-		this.addLB("hola", "adios", "asdfzwergasd1", Tema.Poesia, "150", "150", "Cartone", "nuevo", "15");
+		this.addLB("hola", "adios", "1234567891237", Tema.Poesia, "150", "150", "Cartone", "nuevo", "15");
+		this.addLB("hola", "adios", "1234567891230", Tema.Poesia, "150", "150", "Cartone", "nuevo", "15");
+		this.addLB("hola", "adios", "1234567891231", Tema.Poesia, "150", "150", "Cartone", "nuevo", "15");
+		this.addLB("hola", "adios", "1234567891232", Tema.Poesia, "150", "150", "Cartone", "nuevo", "15");
+		this.addLB("hola", "adios", "1234567891234", Tema.Poesia, "150", "150", "Cartone", "nuevo", "15");
 	}
 
 	public void addLB(String titulo, String autor, String isbn, Tema tema, String numeroPag, String precio,
 			String checkTipe, String checkStatus, String cantidad) {
-		this.libreria.add(new Libro(titulo, autor, isbn, tema, numeroPag, precio, checkTipe, checkStatus,cantidad));
+		this.libreria.add(new Libro(titulo, autor, isbn, tema, numeroPag, precio, checkTipe, checkStatus, cantidad));
 	}
 
 	public void deleteLB(Libro deleteLB) {
@@ -31,6 +31,16 @@ public class Libreria {
 		this.libreria.removeAll(toRemove);
 	}
 
+	public void deletelibIfCantidad(String isbn, int cantidad) {
+		getBook(isbn).deleteCantidad(cantidad);
+		for (Libro libro : libreria) {
+			if(Integer.parseInt(libro.getCantidad())<0) {
+				libro.setCantidad("0");
+			}
+		}
+
+	}
+
 	public Libro getBook(String isbn) {
 		Libro selected = null;
 		for (Libro libro : libreria) {
@@ -40,7 +50,8 @@ public class Libreria {
 		}
 		return selected;
 	}
-	public void aumentarCantidad(int cantidad,String isbn) {
+
+	public void aumentarCantidad(int cantidad, String isbn) {
 		getBook(isbn).aumentarCantidad(cantidad);
 	}
 
@@ -66,7 +77,7 @@ public class Libreria {
 			retorno[index][5] = lib.getFormato();
 			retorno[index][6] = lib.getEstado();
 			retorno[index][7] = lib.getTema().toString();
-			retorno[index][8] = lib.getAutor();		
+			retorno[index][8] = lib.getAutor();
 			index++;
 		}
 		return retorno;

@@ -166,64 +166,70 @@ public class addBook extends JPanel{
 		spnCantidad = new JSpinner();
 
 		GroupLayout gl_dataPanel = new GroupLayout(dataPanel);
-		gl_dataPanel.setHorizontalGroup(gl_dataPanel.createParallelGroup(Alignment.LEADING).addGroup(gl_dataPanel
-				.createSequentialGroup().addGap(36)
-				.addGroup(gl_dataPanel.createParallelGroup(Alignment.TRAILING)
-						.addComponent(btnPanel, GroupLayout.PREFERRED_SIZE, 272, GroupLayout.PREFERRED_SIZE)
-						.addGroup(gl_dataPanel.createSequentialGroup().addGroup(gl_dataPanel
-								.createParallelGroup(Alignment.LEADING)
+		gl_dataPanel.setHorizontalGroup(
+			gl_dataPanel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_dataPanel.createSequentialGroup()
+					.addGap(36)
+					.addGroup(gl_dataPanel.createParallelGroup(Alignment.TRAILING)
+						.addGroup(gl_dataPanel.createSequentialGroup()
+							.addGap(72)
+							.addComponent(btnPanel, GroupLayout.DEFAULT_SIZE, 272, Short.MAX_VALUE))
+						.addGroup(gl_dataPanel.createSequentialGroup()
+							.addGroup(gl_dataPanel.createParallelGroup(Alignment.LEADING)
 								.addGroup(gl_dataPanel.createParallelGroup(Alignment.LEADING)
-										.addComponent(lblPrice, GroupLayout.PREFERRED_SIZE, 54,
-												GroupLayout.PREFERRED_SIZE)
-										.addComponent(lblIsbn, GroupLayout.PREFERRED_SIZE, 48,
-												GroupLayout.PREFERRED_SIZE)
-										.addComponent(lblPrecio, Alignment.TRAILING))
+									.addComponent(lblPrice, GroupLayout.PREFERRED_SIZE, 54, GroupLayout.PREFERRED_SIZE)
+									.addComponent(lblIsbn, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
+									.addComponent(lblPrecio, Alignment.TRAILING))
 								.addComponent(lblNpags, GroupLayout.PREFERRED_SIZE, 53, GroupLayout.PREFERRED_SIZE)
 								.addComponent(lblTema, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
 								.addComponent(lblAutor, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
 								.addComponent(lblTitulo, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE))
-								.addPreferredGap(ComponentPlacement.RELATED)
-								.addGroup(gl_dataPanel.createParallelGroup(Alignment.LEADING)
-										.addComponent(spnCantidad, GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)
-										.addComponent(txtAutor, GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)
-										.addComponent(txtTitulo, GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)
-										.addComponent(comboTema, 0, 270, Short.MAX_VALUE)
-										.addComponent(txtNpag, GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)
-										.addComponent(txtPrecio, GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE)
-										.addComponent(txtISBN, GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE))))
-				.addGap(52)));
-		gl_dataPanel.setVerticalGroup(gl_dataPanel.createParallelGroup(Alignment.LEADING).addGroup(gl_dataPanel
-				.createSequentialGroup().addGap(29)
-				.addGroup(gl_dataPanel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(txtAutor, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-								GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addGroup(gl_dataPanel.createParallelGroup(Alignment.LEADING)
+								.addComponent(spnCantidad, GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)
+								.addComponent(txtAutor, GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)
+								.addComponent(txtTitulo, GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)
+								.addComponent(comboTema, 0, 270, Short.MAX_VALUE)
+								.addComponent(txtNpag, GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)
+								.addComponent(txtPrecio, GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)
+								.addComponent(txtISBN, GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE))))
+					.addGap(52))
+		);
+		gl_dataPanel.setVerticalGroup(
+			gl_dataPanel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_dataPanel.createSequentialGroup()
+					.addGap(29)
+					.addGroup(gl_dataPanel.createParallelGroup(Alignment.BASELINE)
+						.addComponent(txtAutor, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblTitulo))
-				.addGap(49)
-				.addGroup(gl_dataPanel.createParallelGroup(Alignment.BASELINE).addComponent(lblAutor).addComponent(
-						txtTitulo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-				.addGap(54)
-				.addGroup(gl_dataPanel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(comboTema, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-								GroupLayout.PREFERRED_SIZE)
+					.addGap(49)
+					.addGroup(gl_dataPanel.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblAutor)
+						.addComponent(txtTitulo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(54)
+					.addGroup(gl_dataPanel.createParallelGroup(Alignment.BASELINE)
+						.addComponent(comboTema, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblTema))
-				.addGap(50)
-				.addGroup(gl_dataPanel.createParallelGroup(Alignment.BASELINE).addComponent(lblNpags).addComponent(
-						txtNpag, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-				.addGap(38)
-				.addGroup(gl_dataPanel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(txtISBN, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-								GroupLayout.PREFERRED_SIZE)
+					.addGap(50)
+					.addGroup(gl_dataPanel.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblNpags)
+						.addComponent(txtNpag, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(38)
+					.addGroup(gl_dataPanel.createParallelGroup(Alignment.BASELINE)
+						.addComponent(txtISBN, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblIsbn))
-				.addGap(35)
-				.addGroup(gl_dataPanel.createParallelGroup(Alignment.TRAILING).addComponent(lblPrice).addComponent(
-						txtPrecio, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-				.addGap(30)
-				.addGroup(gl_dataPanel.createParallelGroup(Alignment.BASELINE)
+					.addGap(35)
+					.addGroup(gl_dataPanel.createParallelGroup(Alignment.TRAILING)
+						.addComponent(lblPrice)
+						.addComponent(txtPrecio, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(30)
+					.addGroup(gl_dataPanel.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblPrecio, GroupLayout.PREFERRED_SIZE, 17, GroupLayout.PREFERRED_SIZE)
-						.addComponent(spnCantidad, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-								GroupLayout.PREFERRED_SIZE))
-				.addPreferredGap(ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
-				.addComponent(btnPanel, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE).addGap(43)));
+						.addComponent(spnCantidad, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+					.addComponent(btnPanel, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
+					.addGap(43))
+		);
 		dataPanel.setLayout(gl_dataPanel);
 
 		lblLibreria = new JLabel("LIBRERIA");
@@ -271,9 +277,9 @@ public class addBook extends JPanel{
 		btnPanel.setLayout(new GridLayout(0, 3, 0, 0));
 		btnPanel.add(btnAltas);
 		btnPanel.add(btnNuevas);
-		
 		btnModificar = new JButton("MODIFICAR");
 		btnPanel.add(btnModificar);
+		btnModificar.setEnabled(false);
 		tipe = new ButtonGroup();
 		tipe.add(chkCartone);
 		tipe.add(chckbxTapaDura);
@@ -283,7 +289,9 @@ public class addBook extends JPanel{
 		status.add(chckbxReedicion);
 		soloNumeros(txtPrecio);
 		soloNumeros(txtNpag);
-		soloNumeros(txtNpag);
+		soloNumeros(txtISBN);
+		soloLetras(txtTitulo);
+		soloNumeros(spnCantidad);
 			}
 	
 	
@@ -291,6 +299,15 @@ public class addBook extends JPanel{
 		component.addKeyListener(new KeyAdapter() {
 			public void keyTyped(KeyEvent e) {
 				if ((e.getKeyChar() < '0' || e.getKeyChar() > '9')) {
+					e.consume();
+				}
+			}
+		});
+	}
+	public void soloLetras(Component component) {
+		component.addKeyListener(new KeyAdapter() {
+			public void keyTyped(KeyEvent e) {
+				if ((e.getKeyChar() < 'a' || e.getKeyChar() > 'z')&&(e.getKeyChar() < 'A' || e.getKeyChar() > 'Z')) {
 					e.consume();
 				}
 			}

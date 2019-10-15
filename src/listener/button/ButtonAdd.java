@@ -22,15 +22,14 @@ public class ButtonAdd implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if (isWord(ui.getAddbook().getTxtISBN().getText())
-				&& isNumeric(ui.getAddbook().getTextPrecio().getText(), ui.getAddbook().getTxtNpag().getText())) {
+		if (ui.getAddbook().getTxtISBN().getText().length()==13) {
 			if (!ui.getControl().compareISBN(ui.getAddbook().getTxtISBN().getText())) {
 				addLB();
 			} else {
 				alreadyADD();
 			}
 		} else {
-			JOptionPane.showMessageDialog(null, "DATOS INVALIDOS");
+			JOptionPane.showMessageDialog(null, "ISBN CON LONGITUD ERRONEA");
 		}
 		this.ui.deselectedEverything();
 	}

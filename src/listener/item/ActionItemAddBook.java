@@ -19,12 +19,10 @@ public class ActionItemAddBook implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 //		this.ui.getAddbook().enableField();
 //		this.ui.getAddbook().emptyField();
-		
 		this.ui.asociarPanel("addbook");
 		this.ui.getAddbook().getComboTema().removeAllItems();
 		for (Tema tema : Tema.values()) {
 			this.ui.getAddbook().getComboTema().addItem(tema);
 		}
-		
 	};
 }

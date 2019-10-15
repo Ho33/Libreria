@@ -13,6 +13,7 @@ import javax.swing.JTable;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
+import java.awt.GridLayout;
 
 public class showBook extends JPanel {
 	private JPanel panel;
@@ -23,6 +24,7 @@ public class showBook extends JPanel {
 	private JButton btnBaja;
 	private JButton btnMostrar = new JButton();
 	private JButton btnAddLibro;
+	private JButton btnEliminarCantidad;
 
 	/**
 	 * Create the panel.
@@ -39,9 +41,9 @@ public class showBook extends JPanel {
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(33)
 					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-						.addComponent(panel_1, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 583, Short.MAX_VALUE)
-						.addComponent(panel, GroupLayout.DEFAULT_SIZE, 583, Short.MAX_VALUE)
-						.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 583, Short.MAX_VALUE))
+						.addComponent(panel, GroupLayout.DEFAULT_SIZE, 586, Short.MAX_VALUE)
+						.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 586, Short.MAX_VALUE)
+						.addComponent(panel_1, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 583, Short.MAX_VALUE))
 					.addGap(35))
 		);
 		groupLayout.setVerticalGroup(
@@ -61,28 +63,17 @@ public class showBook extends JPanel {
 		
 		btnMostrar = new JButton("MOSTRAR");
 		btnMostrar.setActionCommand("");
+		panel_1.setLayout(new GridLayout(0, 4, 0, 0));
+		panel_1.add(btnMostrar);
+		panel_1.add(btnBaja);
 		
-		btnAddLibro = new JButton("A\u00D1ADIR LIBRO");
+		btnAddLibro = new JButton("A\u00D1ADIR CANTIDAD");
 		btnAddLibro.setActionCommand("");
-		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
-		gl_panel_1.setHorizontalGroup(
-			gl_panel_1.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel_1.createSequentialGroup()
-					.addComponent(btnAddLibro, GroupLayout.PREFERRED_SIZE, 188, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(btnMostrar, GroupLayout.PREFERRED_SIZE, 188, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(btnBaja, GroupLayout.PREFERRED_SIZE, 188, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-		);
-		gl_panel_1.setVerticalGroup(
-			gl_panel_1.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
-					.addComponent(btnAddLibro, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
-					.addComponent(btnBaja, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
-					.addComponent(btnMostrar, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE))
-		);
-		panel_1.setLayout(gl_panel_1);
+		panel_1.add(btnAddLibro);
+		
+		btnEliminarCantidad = new JButton("ELIMINAR CANTIDAD");
+		btnEliminarCantidad.setActionCommand("");
+		panel_1.add(btnEliminarCantidad);
 
 		JLabel lblTitulo = new JLabel("LISTADO");
 		lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
@@ -150,6 +141,11 @@ public class showBook extends JPanel {
 	public JButton getBtnAddLibro() {
 		return btnAddLibro;
 	}
+
+	public JButton getBtnEliminarCantidad() {
+		return btnEliminarCantidad;
+	}
+	
 	
 	
 }
