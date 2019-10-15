@@ -25,11 +25,6 @@ public class Libro {
 		this.precio = precio;
 		this.cantidad = cantidad;
 	}
-	
-
-	public Libro() {
-		super();
-	}
 
 
 	public boolean compareLb(String isbnLb) {
@@ -38,6 +33,10 @@ public class Libro {
 	
 	public void aumentarCantidad(int cantidad) {
 		cantidad = Integer.parseInt(this.cantidad) + cantidad;
+		this.cantidad = String.valueOf(cantidad);
+	}
+	public void deleteCantidad(int cantidad) {
+		cantidad = Integer.parseInt(this.cantidad) - cantidad;
 		this.cantidad = String.valueOf(cantidad);
 	}
 	@Override

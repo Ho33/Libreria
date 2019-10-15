@@ -6,6 +6,7 @@ import Vista.libUI;
 import listener.button.ButtonAdd;
 import listener.button.ButtonAddC;
 import listener.button.ButtonDelete;
+import listener.button.ButtonDeleteCantidad;
 import listener.button.ButtonExit;
 import listener.button.ButtonModificar;
 import listener.button.ButtonMostrar;
@@ -33,6 +34,7 @@ public class paraUI extends libUI {
 		getShowBook().getBtnBaja().addActionListener(new ButtonDelete(this));
 		getShowBook().getBtnMostrar().addActionListener(new ButtonMostrar(this));
 		getShowBook().getBtnAddLibro().addActionListener(new ButtonAddC(this));
+		getShowBook().getBtnEliminarCantidad().addActionListener(new ButtonDeleteCantidad(this));
 		getAddbook().getTxtISBN().addKeyListener(new TxtISBN(this));
 		getAddbook().getBtnModificar().addActionListener(new ButtonModificar(this));
 	}

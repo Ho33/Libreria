@@ -30,6 +30,9 @@ public class Control {
 	public void aumentarCantidad(String isbn,int cantidad) {
 		this.lib.aumentarCantidad(cantidad, isbn);
 	}
+	public void deleteLibroIfCantidad(String isbn, int cantidad) {
+		this.lib.deletelibIfCantidad(isbn, cantidad);
+	}
 
 	public Libro getLibro(String isbn) {
 		return lib.getBook(isbn);
@@ -45,5 +48,10 @@ public class Control {
 
 	public ArrayList<Libro> getLib() {
 		return lib.getLibreria();
+	}
+
+	public void deleteCantidad(String isbn, int numberOffBook) {
+		this.lib.deletelibIfCantidad(isbn,numberOffBook);
+		
 	}
 }
