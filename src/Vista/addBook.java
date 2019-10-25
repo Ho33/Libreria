@@ -307,7 +307,8 @@ public class addBook extends JPanel{
 	public void soloLetras(Component component) {
 		component.addKeyListener(new KeyAdapter() {
 			public void keyTyped(KeyEvent e) {
-				if ((e.getKeyChar() < 'a' || e.getKeyChar() > 'z')&&(e.getKeyChar() < 'A' || e.getKeyChar() > 'Z')) {
+				if (!Character.isLetter(e.getKeyChar()) && !(e.getKeyChar() == KeyEvent.VK_SPACE)
+						&& !(e.getKeyChar() == KeyEvent.VK_BACK_SPACE)) {
 					e.consume();
 				}
 			}

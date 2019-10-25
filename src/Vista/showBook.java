@@ -67,11 +67,11 @@ public class showBook extends JPanel {
 		panel_1.add(btnMostrar);
 		panel_1.add(btnBaja);
 		
-		btnAddLibro = new JButton("A\u00D1ADIR CANTIDAD");
+		btnAddLibro = new JButton("COMPRAR LIBRO");
 		btnAddLibro.setActionCommand("");
 		panel_1.add(btnAddLibro);
 		
-		btnEliminarCantidad = new JButton("ELIMINAR CANTIDAD");
+		btnEliminarCantidad = new JButton("VENDER LIBRO");
 		btnEliminarCantidad.setActionCommand("");
 		panel_1.add(btnEliminarCantidad);
 

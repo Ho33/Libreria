@@ -1,49 +1,54 @@
 package Modelo;
 
+import java.io.Serializable;
+
 import java.util.ArrayList;
 
-public class Libreria {
+import almacen.DTO;
 
-	private ArrayList<Libro> libreria;
+public class Libreria implements Serializable {
+
+	private ArrayList<Libro> libros;
+	private DTO<ArrayList<Libro>> dtoLibreria;
+	private String path = "libros.dat";
 
 	public Libreria() {
 		super();
-		this.libreria = new ArrayList<Libro>();
-		this.addLB("hola", "adios", "1234567891237", Tema.Poesia, "150", "150", "Cartone", "nuevo", "15");
-		this.addLB("hola", "adios", "1234567891230", Tema.Poesia, "150", "150", "Cartone", "nuevo", "15");
-		this.addLB("hola", "adios", "1234567891231", Tema.Poesia, "150", "150", "Cartone", "nuevo", "15");
-		this.addLB("hola", "adios", "1234567891232", Tema.Poesia, "150", "150", "Cartone", "nuevo", "15");
-		this.addLB("hola", "adios", "1234567891234", Tema.Poesia, "150", "150", "Cartone", "nuevo", "15");
+		this.dtoLibreria = new DTO<ArrayList<Libro>>();
+		this.libros = this.dtoLibreria.leer(path);
+		if (this.libros == null) {
+			this.libros = new ArrayList<Libro>();
+		}
 	}
 
 	public void addLB(String titulo, String autor, String isbn, Tema tema, String numeroPag, String precio,
 			String checkTipe, String checkStatus, String cantidad) {
-		this.libreria.add(new Libro(titulo, autor, isbn, tema, numeroPag, precio, checkTipe, checkStatus, cantidad));
+		this.libros.add(new Libro(titulo, autor, isbn, tema, numeroPag, precio, checkTipe, checkStatus, cantidad));
+		this.dtoLibreria.grabar(this.libros, path);
 	}
 
 	public void deleteLB(Libro deleteLB) {
 		ArrayList<Libro> toRemove = new ArrayList<Libro>();
-		for (Libro libro : libreria) {
+		for (Libro libro : libros) {
 			if (libro.equals(deleteLB)) {
 				toRemove.add(libro);
 			}
 		}
-		this.libreria.removeAll(toRemove);
+		this.libros.removeAll(toRemove);
 	}
 
 	public void deletelibIfCantidad(String isbn, int cantidad) {
 		getBook(isbn).deleteCantidad(cantidad);
-		for (Libro libro : libreria) {
-			if(Integer.parseInt(libro.getCantidad())<0) {
+		for (Libro libro : libros) {
+			if (Integer.parseInt(libro.getCantidad()) < 0) {
 				libro.setCantidad("0");
 			}
 		}
-
 	}
 
 	public Libro getBook(String isbn) {
 		Libro selected = null;
-		for (Libro libro : libreria) {
+		for (Libro libro : libros) {
 			if (libro.compareLb(isbn)) {
 				selected = libro;
 			}
@@ -57,7 +62,7 @@ public class Libreria {
 
 	public boolean compareIsbn(String isbn) {
 		boolean selected = false;
-		for (Libro libro : libreria) {
+		for (Libro libro : libros) {
 			if (libro.compareLb(isbn)) {
 				selected = true;
 			}
@@ -66,9 +71,9 @@ public class Libreria {
 	}
 
 	public String[][] addFila() {
-		String[][] retorno = new String[this.libreria.size()][9];
+		String[][] retorno = new String[this.libros.size()][9];
 		int index = 0;
-		for (Libro lib : this.libreria) {
+		for (Libro lib : this.libros) {
 			retorno[index][0] = lib.getISBN();
 			retorno[index][1] = lib.getTitulo();
 			retorno[index][2] = lib.getPrecio();
@@ -84,6 +89,6 @@ public class Libreria {
 	}
 
 	public ArrayList<Libro> getLibreria() {
-		return libreria;
+		return libros;
 	}
 }

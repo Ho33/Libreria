@@ -2,11 +2,8 @@ package Vista;
 
 import java.awt.CardLayout;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Font;
 import java.awt.GridLayout;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -24,13 +21,14 @@ public class libUI extends JFrame {
 	private JMenu jmenuAlta;
 	protected addBook addBook = new addBook(Color.cyan);
 	protected showBook showBook = new showBook();
-	protected JMenuItem itemAddBook = new JMenuItem("addbook");
-	protected JMenuItem itemListado = new JMenuItem("showbook");
+	protected JMenuItem itemAddBook = new JMenuItem("Nuevo");
+	protected JMenuItem itemListado = new JMenuItem("Mostrar");
 	private JMenu jmenuLista;
 	private JPanel white = new JPanel();
 	private final JLabel lblLaLibreriaSin = getAddbook().addImage("/lib.png");
 	protected infoLibros info;
 	protected JButton editar = new JButton();
+	private final JLabel lblBienvenido = new JLabel("BIENVENIDO");
 
 	/**
 	 * Create the frame.
@@ -50,16 +48,19 @@ public class libUI extends JFrame {
 
 		setJMenuBar(menuBar);
 
-		jmenuAlta = new JMenu("Alta");
-		jmenuLista = new JMenu("Vista");
+		jmenuAlta = new JMenu("Gestion");
+		jmenuLista = new JMenu("Tienda");
 		menuBar.add(jmenuAlta);
 		menuBar.add(jmenuLista);
 
 		this.contentPane.add(white, "white");
-		white.setLayout(new GridLayout(0, 1, 0, 0));
+		white.setLayout(new CardLayout(0, 0));
+		lblBienvenido.setFont(new Font("Tahoma", Font.PLAIN, 50));
+		lblBienvenido.setHorizontalAlignment(SwingConstants.CENTER);
+		
+		white.add(lblBienvenido, "name_81895743499600");
 		lblLaLibreriaSin.setHorizontalAlignment(SwingConstants.CENTER);
 		lblLaLibreriaSin.setFont(new Font("Tahoma", Font.PLAIN, 42));
-		white.add(lblLaLibreriaSin);
 		this.contentPane.add(addBook, "addbook");
 		this.contentPane.add(showBook, "showbook");
 		incluirItem(jmenuAlta, itemAddBook);
@@ -128,5 +129,4 @@ public class libUI extends JFrame {
 	public JButton getEditar() {
 		return editar;
 	}
-
 }
