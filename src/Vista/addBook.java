@@ -24,6 +24,7 @@ import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.SwingConstants;
 import javax.swing.border.EtchedBorder;
+import java.awt.BorderLayout;
 
 public class addBook extends JPanel{
 
@@ -57,10 +58,12 @@ public class addBook extends JPanel{
 	 * Create the panel.
 	 */
 	public addBook(Color fondo){
+		setBounds(100, 100, 937, 626);
 		titlePanel = new JPanel();
 		titlePanel.setBackground(fondo);
 
 		dataPanel = new JPanel();
+		dataPanel.setAlignmentX(Component.RIGHT_ALIGNMENT);
 		dataPanel.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 		dataPanel.setBackground(Color.CYAN);
 
@@ -95,28 +98,40 @@ public class addBook extends JPanel{
 		txtInfo.setColumns(10);
 
 		GroupLayout gl_checkPanel = new GroupLayout(checkPanel);
-		gl_checkPanel.setHorizontalGroup(gl_checkPanel.createParallelGroup(Alignment.TRAILING)
-				.addGroup(Alignment.LEADING, gl_checkPanel.createSequentialGroup().addGap(84).addGroup(gl_checkPanel
-						.createParallelGroup(Alignment.TRAILING)
+		gl_checkPanel.setHorizontalGroup(
+			gl_checkPanel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_checkPanel.createSequentialGroup()
+					.addGap(84)
+					.addGroup(gl_checkPanel.createParallelGroup(Alignment.TRAILING)
 						.addComponent(chkCartone, GroupLayout.PREFERRED_SIZE, 95, GroupLayout.PREFERRED_SIZE)
 						.addComponent(chckbxTapaDura, GroupLayout.PREFERRED_SIZE, 95, GroupLayout.PREFERRED_SIZE)
 						.addComponent(chckbxNovedad, GroupLayout.PREFERRED_SIZE, 95, GroupLayout.PREFERRED_SIZE)
 						.addComponent(chckbxReedicion, GroupLayout.PREFERRED_SIZE, 95, GroupLayout.PREFERRED_SIZE)
 						.addComponent(chckbxRustica, GroupLayout.PREFERRED_SIZE, 95, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblInfo, GroupLayout.PREFERRED_SIZE, 97, GroupLayout.PREFERRED_SIZE))
-						.addPreferredGap(ComponentPlacement.UNRELATED)
-						.addComponent(txtInfo, GroupLayout.DEFAULT_SIZE, 255, Short.MAX_VALUE).addGap(89)));
-		gl_checkPanel.setVerticalGroup(gl_checkPanel.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_checkPanel.createSequentialGroup().addGap(43).addComponent(chkCartone)
-						.addPreferredGap(ComponentPlacement.RELATED).addComponent(chckbxRustica)
-						.addPreferredGap(ComponentPlacement.UNRELATED).addComponent(chckbxTapaDura).addGap(43)
-						.addComponent(chckbxNovedad).addPreferredGap(ComponentPlacement.UNRELATED)
-						.addComponent(chckbxReedicion).addGap(147)
-						.addGroup(gl_checkPanel.createParallelGroup(Alignment.BASELINE)
-								.addComponent(lblInfo, GroupLayout.PREFERRED_SIZE, 15, GroupLayout.PREFERRED_SIZE)
-								.addComponent(txtInfo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-										GroupLayout.PREFERRED_SIZE))
-						.addGap(160)));
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addComponent(txtInfo, GroupLayout.PREFERRED_SIZE, 177, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(62, Short.MAX_VALUE))
+		);
+		gl_checkPanel.setVerticalGroup(
+			gl_checkPanel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_checkPanel.createSequentialGroup()
+					.addGap(43)
+					.addComponent(chkCartone)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(chckbxRustica)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addComponent(chckbxTapaDura)
+					.addGap(43)
+					.addComponent(chckbxNovedad)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addComponent(chckbxReedicion)
+					.addGap(147)
+					.addGroup(gl_checkPanel.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblInfo, GroupLayout.PREFERRED_SIZE, 15, GroupLayout.PREFERRED_SIZE)
+						.addComponent(txtInfo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(160))
+		);
 		checkPanel.setLayout(gl_checkPanel);
 
 		JLabel lblTitulo = new JLabel("TITULO");
@@ -170,29 +185,25 @@ public class addBook extends JPanel{
 			gl_dataPanel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_dataPanel.createSequentialGroup()
 					.addGap(36)
-					.addGroup(gl_dataPanel.createParallelGroup(Alignment.TRAILING)
-						.addGroup(gl_dataPanel.createSequentialGroup()
-							.addGap(72)
-							.addComponent(btnPanel, GroupLayout.DEFAULT_SIZE, 272, Short.MAX_VALUE))
-						.addGroup(gl_dataPanel.createSequentialGroup()
-							.addGroup(gl_dataPanel.createParallelGroup(Alignment.LEADING)
-								.addGroup(gl_dataPanel.createParallelGroup(Alignment.LEADING)
-									.addComponent(lblPrice, GroupLayout.PREFERRED_SIZE, 54, GroupLayout.PREFERRED_SIZE)
-									.addComponent(lblIsbn, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
-									.addComponent(lblPrecio, Alignment.TRAILING))
-								.addComponent(lblNpags, GroupLayout.PREFERRED_SIZE, 53, GroupLayout.PREFERRED_SIZE)
-								.addComponent(lblTema, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
-								.addComponent(lblAutor, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
-								.addComponent(lblTitulo, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE))
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addGroup(gl_dataPanel.createParallelGroup(Alignment.LEADING)
-								.addComponent(spnCantidad, GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)
-								.addComponent(txtAutor, GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)
-								.addComponent(txtTitulo, GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)
-								.addComponent(comboTema, 0, 270, Short.MAX_VALUE)
-								.addComponent(txtNpag, GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)
-								.addComponent(txtPrecio, GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)
-								.addComponent(txtISBN, GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE))))
+					.addGroup(gl_dataPanel.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_dataPanel.createParallelGroup(Alignment.LEADING)
+							.addComponent(lblPrice, GroupLayout.PREFERRED_SIZE, 54, GroupLayout.PREFERRED_SIZE)
+							.addComponent(lblIsbn, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
+							.addComponent(lblPrecio, Alignment.TRAILING))
+						.addComponent(lblNpags, GroupLayout.PREFERRED_SIZE, 53, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblTema, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblAutor, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblTitulo, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(gl_dataPanel.createParallelGroup(Alignment.LEADING)
+						.addComponent(btnPanel, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 289, Short.MAX_VALUE)
+						.addComponent(spnCantidad, GroupLayout.DEFAULT_SIZE, 279, Short.MAX_VALUE)
+						.addComponent(txtAutor, GroupLayout.DEFAULT_SIZE, 279, Short.MAX_VALUE)
+						.addComponent(txtTitulo, GroupLayout.DEFAULT_SIZE, 279, Short.MAX_VALUE)
+						.addComponent(comboTema, 0, 279, Short.MAX_VALUE)
+						.addComponent(txtNpag, GroupLayout.DEFAULT_SIZE, 279, Short.MAX_VALUE)
+						.addComponent(txtPrecio, GroupLayout.DEFAULT_SIZE, 279, Short.MAX_VALUE)
+						.addComponent(txtISBN, GroupLayout.DEFAULT_SIZE, 279, Short.MAX_VALUE))
 					.addGap(52))
 		);
 		gl_dataPanel.setVerticalGroup(
@@ -226,9 +237,9 @@ public class addBook extends JPanel{
 					.addGroup(gl_dataPanel.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblPrecio, GroupLayout.PREFERRED_SIZE, 17, GroupLayout.PREFERRED_SIZE)
 						.addComponent(spnCantidad, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+					.addGap(14)
 					.addComponent(btnPanel, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
-					.addGap(43))
+					.addContainerGap(43, Short.MAX_VALUE))
 		);
 		dataPanel.setLayout(gl_dataPanel);
 
@@ -237,33 +248,7 @@ public class addBook extends JPanel{
 		lblLibreria.setHorizontalAlignment(SwingConstants.CENTER);
 
 		btnExit = new JButton("EXIT");
-		GroupLayout groupLayout = new GroupLayout(this);
-		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout
-				.createSequentialGroup()
-				.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-						.addGroup(groupLayout.createSequentialGroup().addGap(10).addGroup(groupLayout
-								.createParallelGroup(Alignment.TRAILING)
-								.addComponent(titlePanel, GroupLayout.DEFAULT_SIZE, 950, Short.MAX_VALUE)
-								.addGroup(groupLayout.createSequentialGroup().addGap(13)
-										.addComponent(dataPanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE,
-												Short.MAX_VALUE)
-										.addGap(18)
-										.addComponent(checkPanel, GroupLayout.DEFAULT_SIZE, 532, Short.MAX_VALUE))))
-						.addGroup(groupLayout.createSequentialGroup().addContainerGap(870, Short.MAX_VALUE)
-								.addComponent(btnExit, GroupLayout.PREFERRED_SIZE, 90, GroupLayout.PREFERRED_SIZE)))
-				.addContainerGap()));
-		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup().addContainerGap()
-						.addComponent(titlePanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-								GroupLayout.PREFERRED_SIZE)
-						.addGap(18)
-						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
-								.addComponent(dataPanel, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 541,
-										Short.MAX_VALUE)
-								.addComponent(checkPanel, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE,
-										GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-						.addGap(29).addComponent(btnExit, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
-						.addContainerGap()));
+		btnExit.setAlignmentX(Component.RIGHT_ALIGNMENT);
 		GroupLayout gl_titlePanel = new GroupLayout(titlePanel);
 		gl_titlePanel.setHorizontalGroup(gl_titlePanel.createParallelGroup(Alignment.LEADING)
 				.addGroup(Alignment.TRAILING, gl_titlePanel.createSequentialGroup().addGap(200)
@@ -272,7 +257,6 @@ public class addBook extends JPanel{
 				gl_titlePanel.createParallelGroup(Alignment.TRAILING).addGroup(gl_titlePanel.createSequentialGroup()
 						.addContainerGap().addComponent(lblLibreria, GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)));
 		titlePanel.setLayout(gl_titlePanel);
-		setLayout(groupLayout);
 		setBackground(Color.cyan);
 		btnPanel.setLayout(new GridLayout(0, 3, 0, 0));
 		btnPanel.add(btnAltas);
@@ -292,6 +276,38 @@ public class addBook extends JPanel{
 		soloNumeros(txtISBN);
 		soloLetras(txtTitulo);
 		soloNumeros(spnCantidad);
+		GroupLayout groupLayout = new GroupLayout(this);
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(titlePanel, GroupLayout.DEFAULT_SIZE, 927, Short.MAX_VALUE)
+							.addGap(10))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(22)
+							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+								.addComponent(btnExit, GroupLayout.PREFERRED_SIZE, 239, GroupLayout.PREFERRED_SIZE)
+								.addGroup(groupLayout.createSequentialGroup()
+									.addComponent(dataPanel, GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE)
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addComponent(checkPanel, GroupLayout.DEFAULT_SIZE, 429, Short.MAX_VALUE)))
+							.addGap(20)))
+					.addGap(0))
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addComponent(titlePanel, GroupLayout.DEFAULT_SIZE, 54, Short.MAX_VALUE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(dataPanel, 0, 0, Short.MAX_VALUE)
+						.addComponent(checkPanel, GroupLayout.PREFERRED_SIZE, 524, Short.MAX_VALUE))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(btnExit, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap())
+		);
+		setLayout(groupLayout);
 			}
 	
 	

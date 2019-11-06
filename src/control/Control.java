@@ -27,6 +27,10 @@ public class Control {
 		}
 		return result;
 	}
+	
+	public void updateLibrary() {
+		this.lib.updateLibrary();
+	}
 	public void aumentarCantidad(String isbn,int cantidad) {
 		this.lib.aumentarCantidad(cantidad, isbn);
 	}

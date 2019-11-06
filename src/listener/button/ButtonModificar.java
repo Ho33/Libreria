@@ -29,5 +29,6 @@ public class ButtonModificar implements ActionListener {
 		libro.setPrecio(ui.getAddbook().getTextPrecio().getText().toString());
 		this.ui.getAddbook().getTxtInfo().setText("Modificado con exito");
 		this.ui.getAddbook().getTxtInfo().setBackground(Color.green);
+		this.ui.getControl().updateLibrary();
 	}
 }

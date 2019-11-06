@@ -35,8 +35,8 @@ public class libUI extends JFrame {
 	 */
 
 	public libUI() {
+		setBounds(100, 100, 950, 700);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1200, 820);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new CardLayout(0, 0));

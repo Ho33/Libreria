@@ -29,6 +29,7 @@ public class ButtonDeleteCantidad implements ActionListener {
 			}
 		}
 		this.ui.fillRow();
+		this.ui.getControl().updateLibrary();
 	}
 
 	public boolean isNumeric(String cantidad) {

@@ -1,7 +1,7 @@
 package Modelo;
 
+import java.io.File;
 import java.io.Serializable;
-
 import java.util.ArrayList;
 
 import almacen.DTO;
@@ -9,22 +9,31 @@ import almacen.DTO;
 public class Libreria implements Serializable {
 
 	private ArrayList<Libro> libros;
-	private DTO<ArrayList<Libro>> dtoLibreria;
-	private String path = "libros.dat";
+	private DTO<Libro> dtoLibreria;
+	private String path = "./libros";
 
 	public Libreria() {
 		super();
-		this.dtoLibreria = new DTO<ArrayList<Libro>>();
-		this.libros = this.dtoLibreria.leer(path);
-		if (this.libros == null) {
-			this.libros = new ArrayList<Libro>();
+		this.dtoLibreria = new DTO<Libro>();
+		this.libros = getLibreria();
+		File path = new File(this.path);
+		if (!path.exists()) {
+			path.mkdir();
 		}
 	}
 
 	public void addLB(String titulo, String autor, String isbn, Tema tema, String numeroPag, String precio,
 			String checkTipe, String checkStatus, String cantidad) {
 		this.libros.add(new Libro(titulo, autor, isbn, tema, numeroPag, precio, checkTipe, checkStatus, cantidad));
-		this.dtoLibreria.grabar(this.libros, path);
+		updateLibrary();
+	}
+
+	public void updateLibrary() {
+		if (this.libros != null) {
+			for (Libro libro : libros) {
+				this.dtoLibreria.grabar(libro, getRute(libro.getISBN()));
+			}
+		}
 	}
 
 	public void deleteLB(Libro deleteLB) {
@@ -32,9 +41,11 @@ public class Libreria implements Serializable {
 		for (Libro libro : libros) {
 			if (libro.equals(deleteLB)) {
 				toRemove.add(libro);
+				deleteBook(libro.getISBN());
 			}
 		}
 		this.libros.removeAll(toRemove);
+		updateLibrary();
 	}
 
 	public void deletelibIfCantidad(String isbn, int cantidad) {
@@ -44,6 +55,13 @@ public class Libreria implements Serializable {
 				libro.setCantidad("0");
 			}
 		}
+		updateLibrary();
+	}
+
+	public void deleteBook(String ISBN) {
+		File file = new File(this.getRute(ISBN));
+		if (file.exists())
+			file.delete();
 	}
 
 	public Libro getBook(String isbn) {
@@ -58,6 +76,7 @@ public class Libreria implements Serializable {
 
 	public void aumentarCantidad(int cantidad, String isbn) {
 		getBook(isbn).aumentarCantidad(cantidad);
+		updateLibrary();
 	}
 
 	public boolean compareIsbn(String isbn) {
@@ -89,6 +108,16 @@ public class Libreria implements Serializable {
 	}
 
 	public ArrayList<Libro> getLibreria() {
+		ArrayList<Libro> libros = new ArrayList<Libro>();
+		String[] path = new File(this.path).list();
+		for (int i = 0; i < path.length; i++) {
+			libros.add(dtoLibreria.leer(this.path + "/" + path[i]));
+		}
 		return libros;
+	}
+
+	public String getRute(String isbn) {
+		return this.path + "/" + isbn + ".dat";
+
 	}
 }
