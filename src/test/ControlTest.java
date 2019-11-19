@@ -4,6 +4,9 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.io.IOException;
+import java.sql.SQLException;
+
 import org.junit.jupiter.api.Test;
 
 import Modelo.Libro;
@@ -23,7 +26,12 @@ class ControlTest {
 	void testAumentarCantidad() {
 		String isbn = instance.getLib().get(0).getISBN();
 		int cantidad = 15;
-		instance.aumentarCantidad(isbn, 15);
+		try {
+			instance.aumentarCantidad(isbn, 15);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		String cantidadFinal = instance.getLib().get(0).getCantidad();
 		assertTrue(cantidadFinal == instance.getLib().get(0).getCantidad());
 	}
@@ -37,13 +45,18 @@ class ControlTest {
 	@Test
 	void testDeleteBook() {
 		String isbn = instance.getLib().get(0).getISBN();
-		instance.deleteBook(isbn);
+		try {
+			instance.deleteBook(isbn);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		assertFalse(instance.getLib().contains(instance.getLibro(isbn)));
 	}
 
 	@Test
-	void testAddLib() {
-		instance.addLb("holasda", "adasdios", "asdfzrrrgasd1", Tema.Drama, "15000", "15000", "Cartone",
+	void testAddLib() throws IOException {
+		instance.addLb("holasda", "adasdios", "asdfzrrrgasd1", "drama", "15000", "15000", "Cartone",
 				"nuevo", "15");
 		assertTrue(instance.compareISBN("asdfzrrrgasd1"));
 	}

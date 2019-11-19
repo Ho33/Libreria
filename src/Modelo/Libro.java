@@ -1,21 +1,24 @@
 package Modelo;
 
 import java.io.Serializable;
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.HashMap;
 
-public class Libro implements Serializable{
+public class Libro implements Serializable {
 
 	private String titulo;
 	private String autor;
 	private String isbn;
-	private Tema tema;
+	private String tema;
 	private String numeroPag;
 	private String precio;
 	private String formato;
 	private String estado;
 	private String cantidad;
 
-	public Libro(String titulo, String autor, String iSBN, Tema tema, String numeroPag,String precio, String formato,
-			String estado,String cantidad) {
+	public Libro(String titulo, String autor, String iSBN, String tema, String numeroPag, String precio, String formato,
+			String estado, String cantidad) {
 		super();
 		this.titulo = titulo;
 		this.autor = autor;
@@ -28,19 +31,24 @@ public class Libro implements Serializable{
 		this.cantidad = cantidad;
 	}
 
-
 	public boolean compareLb(String isbnLb) {
 		return this.isbn.equals(isbnLb);
 	}
-	
+
 	public void aumentarCantidad(int cantidad) {
-		cantidad = Integer.parseInt(this.cantidad) + cantidad;
-		this.cantidad = String.valueOf(cantidad);
+		if (cantidad > 0) {
+			cantidad = Integer.parseInt(this.cantidad) + cantidad;
+			this.cantidad = String.valueOf(cantidad);
+		}
 	}
+
 	public void deleteCantidad(int cantidad) {
-		cantidad = Integer.parseInt(this.cantidad) - cantidad;
-		this.cantidad = String.valueOf(cantidad);
+		int result = Integer.parseInt(this.cantidad) - cantidad;
+		if (result >= 0) {
+			this.cantidad = String.valueOf(result);
+		}
 	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -54,8 +62,6 @@ public class Libro implements Serializable{
 		Libro other = (Libro) obj;
 		return isbn.equals(other.isbn);
 	}
-	
-	
 
 	public String getTitulo() {
 		return titulo;
@@ -69,7 +75,7 @@ public class Libro implements Serializable{
 		return isbn;
 	}
 
-	public Tema getTema() {
+	public String getTema() {
 		return tema;
 	}
 
@@ -89,56 +95,44 @@ public class Libro implements Serializable{
 		return precio;
 	}
 
-
 	public String getCantidad() {
 		return cantidad;
 	}
-
 
 	public void setCantidad(String cantidad) {
 		this.cantidad = cantidad;
 	}
 
-
 	public void setTitulo(String titulo) {
 		this.titulo = titulo;
 	}
-
 
 	public void setAutor(String autor) {
 		this.autor = autor;
 	}
 
-
 	public void setIsbn(String isbn) {
 		this.isbn = isbn;
 	}
 
-
-	public void setTema(Tema tema) {
+	public void setTema(String tema) {
 		this.tema = tema;
 	}
-
 
 	public void setNumeroPag(String numeroPag) {
 		this.numeroPag = numeroPag;
 	}
 
-
 	public void setPrecio(String precio) {
 		this.precio = precio;
 	}
-
 
 	public void setFormato(String formato) {
 		this.formato = formato;
 	}
 
-
 	public void setEstado(String estado) {
 		this.estado = estado;
 	}
-	
-	
-	
+
 }

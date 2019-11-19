@@ -1,98 +1,61 @@
 package Modelo;
 
-import java.io.File;
+import java.io.IOException;
 import java.io.Serializable;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
-import almacen.DTO;
+import accessDB.DTOLibrary;
 
 public class Libreria implements Serializable {
 
-	private ArrayList<Libro> libros;
-	private DTO<Libro> dtoLibreria;
-	private String path = "./libros";
+	private DTOLibrary dtoLibreria;
+	private String nameDB = "Library";
 
 	public Libreria() {
 		super();
-		this.dtoLibreria = new DTO<Libro>();
-		this.libros = getLibreria();
-		File path = new File(this.path);
-		if (!path.exists()) {
-			path.mkdir();
-		}
+		this.dtoLibreria = new DTOLibrary(this.nameDB);
 	}
 
-	public void addLB(String titulo, String autor, String isbn, Tema tema, String numeroPag, String precio,
-			String checkTipe, String checkStatus, String cantidad) {
-		this.libros.add(new Libro(titulo, autor, isbn, tema, numeroPag, precio, checkTipe, checkStatus, cantidad));
-		updateLibrary();
-	}
-
-	public void updateLibrary() {
-		if (this.libros != null) {
-			for (Libro libro : libros) {
-				this.dtoLibreria.grabar(libro, getRute(libro.getISBN()));
-			}
-		}
+	public void addLB(String titulo, String autor, String isbn, String tema, String numeroPag, String precio,
+			String checkTipe, String checkStatus, String cantidad) throws IOException {
+		Libro book = new Libro(titulo, autor, isbn, tema, numeroPag, precio, checkTipe, checkStatus, cantidad);
+		this.dtoLibreria.save(book);
 	}
 
 	public void deleteLB(Libro deleteLB) {
-		ArrayList<Libro> toRemove = new ArrayList<Libro>();
-		for (Libro libro : libros) {
-			if (libro.equals(deleteLB)) {
-				toRemove.add(libro);
-				deleteBook(libro.getISBN());
-			}
-		}
-		this.libros.removeAll(toRemove);
-		updateLibrary();
+		this.dtoLibreria.sqlDeleteBook(deleteLB.getISBN());
 	}
 
 	public void deletelibIfCantidad(String isbn, int cantidad) {
-		getBook(isbn).deleteCantidad(cantidad);
-		for (Libro libro : libros) {
-			if (Integer.parseInt(libro.getCantidad()) < 0) {
-				libro.setCantidad("0");
-			}
-		}
-		updateLibrary();
-	}
-
-	public void deleteBook(String ISBN) {
-		File file = new File(this.getRute(ISBN));
-		if (file.exists())
-			file.delete();
+		Libro book = getBook(isbn);
+		book.deleteCantidad(cantidad);
+		this.dtoLibreria.modifyFields(isbn, "cantidad", book.getCantidad());
 	}
 
 	public Libro getBook(String isbn) {
-		Libro selected = null;
-		for (Libro libro : libros) {
-			if (libro.compareLb(isbn)) {
-				selected = libro;
-			}
-		}
-		return selected;
+		return this.dtoLibreria.sqlSearchBook(isbn);
 	}
 
 	public void aumentarCantidad(int cantidad, String isbn) {
-		getBook(isbn).aumentarCantidad(cantidad);
-		updateLibrary();
+		Libro book = getBook(isbn);
+		book.aumentarCantidad(cantidad);
+		this.dtoLibreria.modifyFields(isbn, "cantidad", book.getCantidad());
 	}
 
 	public boolean compareIsbn(String isbn) {
-		boolean selected = false;
-		for (Libro libro : libros) {
-			if (libro.compareLb(isbn)) {
-				selected = true;
-			}
-		}
-		return selected;
+		return this.getBook(isbn) != null;
+	}
+	
+	public void modifyBook(Libro libro){
+		this.dtoLibreria.sqlModifyBook(libro);
 	}
 
 	public String[][] addFila() {
-		String[][] retorno = new String[this.libros.size()][9];
+		String[][] retorno = new String[this.getLibreria().size()][9];
 		int index = 0;
-		for (Libro lib : this.libros) {
+		for (Libro lib : this.getLibreria()) {
 			retorno[index][0] = lib.getISBN();
 			retorno[index][1] = lib.getTitulo();
 			retorno[index][2] = lib.getPrecio();
@@ -106,18 +69,21 @@ public class Libreria implements Serializable {
 		}
 		return retorno;
 	}
-
-	public ArrayList<Libro> getLibreria() {
-		ArrayList<Libro> libros = new ArrayList<Libro>();
-		String[] path = new File(this.path).list();
-		for (int i = 0; i < path.length; i++) {
-			libros.add(dtoLibreria.leer(this.path + "/" + path[i]));
-		}
-		return libros;
+	
+	public String[] getBookFields(Libro libro) {
+		String [] result = new String[8];
+		result[0] = libro.getTitulo();
+		result[1] = libro.getAutor();
+		result[3] = libro.getNumeroPag();
+		result[4] = libro.getFormato();
+		result[5] = libro.getEstado();
+		result[6] = libro.getPrecio();
+		result[7] = libro.getCantidad();
+		return result;
+		
 	}
 
-	public String getRute(String isbn) {
-		return this.path + "/" + isbn + ".dat";
-
+	public ArrayList<Libro> getLibreria() {
+		return dtoLibreria.readBooks();
 	}
 }

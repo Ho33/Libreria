@@ -1,23 +1,27 @@
 package control;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import Modelo.Libreria;
 import Modelo.Libro;
-import Modelo.Tema;
 
 public class Control {
 
 	private Libreria lib;
+	private validadores validate;
 
 	public Control() {
 		super();
+		this.validate = new validadores();
 		this.lib = new Libreria();
 	}
 
-	public void addLb(String titulo, String autor, String isbn, Tema tema, String numeroPag, String precio,
-			String checkTipe, String checkStatus,String cantidad) {
-		lib.addLB(titulo, autor, isbn, tema, numeroPag, precio, checkTipe, checkStatus, cantidad);
+	public void addLb(String titulo, String autor, String isbn, String tema, String numeroPag, String precio,
+			String checkTipe, String checkStatus, String cantidad) throws IOException {
+		if(validate.executeValidate(this.lib.getBookFields(new Libro(titulo, autor, isbn, tema, numeroPag, precio, checkTipe, checkStatus, cantidad)))) {
+			lib.addLB(titulo, autor, isbn, tema, numeroPag, precio, checkTipe, checkStatus, cantidad);			
+		}
 	}
 
 	public boolean compareISBN(String isbn) {
@@ -27,25 +31,27 @@ public class Control {
 		}
 		return result;
 	}
-	
-	public void updateLibrary() {
-		this.lib.updateLibrary();
-	}
-	public void aumentarCantidad(String isbn,int cantidad) {
+
+	public void aumentarCantidad(String isbn, int cantidad) throws IOException {
 		this.lib.aumentarCantidad(cantidad, isbn);
 	}
-	public void deleteLibroIfCantidad(String isbn, int cantidad) {
+
+	public void deleteLibroIfCantidad(String isbn, int cantidad) throws IOException {
 		this.lib.deletelibIfCantidad(isbn, cantidad);
+	}
+
+	public void modifyBook(Libro libro) {
+		this.lib.modifyBook(libro);
 	}
 
 	public Libro getLibro(String isbn) {
 		return lib.getBook(isbn);
 	}
 
-	public void deleteBook(String isbn) {
+	public void deleteBook(String isbn) throws IOException {
 		lib.deleteLB(lib.getBook(isbn));
 	}
-	
+
 	public String[][] addFila() {
 		return this.lib.addFila();
 	}
@@ -54,8 +60,7 @@ public class Control {
 		return lib.getLibreria();
 	}
 
-	public void deleteCantidad(String isbn, int numberOffBook) {
-		this.lib.deletelibIfCantidad(isbn,numberOffBook);
-		
+	public void deleteCantidad(String isbn, int numberOffBook) throws IOException {
+		this.lib.deletelibIfCantidad(isbn, numberOffBook);
 	}
 }

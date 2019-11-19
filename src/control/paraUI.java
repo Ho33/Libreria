@@ -1,5 +1,8 @@
 package control;
 
+import java.io.IOException;
+import java.sql.SQLException;
+
 import javax.swing.ListSelectionModel;
 
 import Vista.libUI;
@@ -22,7 +25,7 @@ public class paraUI extends libUI {
 	private ListSelectionModel modelo;
 	
 	
-	public paraUI() {
+	public paraUI() throws IllegalArgumentException, IllegalAccessException, SecurityException, IOException, SQLException {
 		super();
 		this.control = new Control();
 		// Listener Items

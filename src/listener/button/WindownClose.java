@@ -2,6 +2,7 @@ package listener.button;
 
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.io.IOException;
 
 import Modelo.Libreria;
 import control.paraUI;
@@ -24,7 +25,7 @@ public class WindownClose implements WindowListener {
 
 	@Override
 	public void windowClosing(WindowEvent e) {
-		this.ui.getControl().updateLibrary();
+		
 
 	}
 

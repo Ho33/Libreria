@@ -4,8 +4,9 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JOptionPane;
+
 import Modelo.Libro;
-import Modelo.Tema;
 import control.paraUI;
 
 public class ButtonModificar implements ActionListener {
@@ -23,12 +24,13 @@ public class ButtonModificar implements ActionListener {
 		Libro libro = ui.getControl().getLibro(txtISBN);
 		libro.setTitulo(ui.getAddbook().getTxtTitulo().getText().toString());
 		libro.setAutor(ui.getAddbook().getTxtAutor().getText().toString());
-		libro.setTema((Tema)ui.getAddbook().getComboTema().getSelectedItem());
+		libro.setTema(ui.getAddbook().getComboTema().getSelectedItem().toString());
 		libro.setNumeroPag(ui.getAddbook().getTxtNpag().getText().toString());
 		libro.setCantidad(ui.getAddbook().getSpnCantidad().getValue().toString());
 		libro.setPrecio(ui.getAddbook().getTextPrecio().getText().toString());
-		this.ui.getAddbook().getTxtInfo().setText("Modificado con exito");
-		this.ui.getAddbook().getTxtInfo().setBackground(Color.green);
-		this.ui.getControl().updateLibrary();
+		libro.setEstado(ui.getAddbook().getCheckBoxStatus());
+		libro.setFormato(ui.getAddbook().getCheckBoxTipe());
+		this.ui.getControl().modifyBook(libro);
+		JOptionPane.showMessageDialog(null, "Modificado con exito");
 	}
 }

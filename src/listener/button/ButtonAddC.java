@@ -2,6 +2,7 @@ package listener.button;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 import javax.swing.JOptionPane;
 
@@ -23,7 +24,12 @@ public class ButtonAddC implements ActionListener {
 			if (isNumeric(cantidad)) {
 				int numberOffBook = Integer.parseInt(cantidad);
 				String isbn = this.ui.getShowBook().getIsbnRow();
-				this.ui.getControl().aumentarCantidad(isbn, numberOffBook);
+				try {
+					this.ui.getControl().aumentarCantidad(isbn, numberOffBook);
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}else {
 				JOptionPane.showMessageDialog(null, "Introduzca un numero por favor, cambios no guardados");
 			}
