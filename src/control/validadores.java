@@ -19,7 +19,7 @@ public class validadores {
 	private boolean isEmpty(String data[]) {
 		boolean result = false;
 		for (int i = 0; i < data.length; i++) {
-			if (data[i]=="") {
+			if (data[i].isBlank()) {
 				result = true;
 			}
 		}

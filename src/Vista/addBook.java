@@ -24,7 +24,6 @@ import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.SwingConstants;
 import javax.swing.border.EtchedBorder;
-import java.awt.BorderLayout;
 
 public class addBook extends JPanel{
 
@@ -377,7 +376,7 @@ public class addBook extends JPanel{
 		} else if (chckbxTapaDura.isSelected()) {
 			return chckbxTapaDura.getText();
 		}
-		return null;
+		return "";
 	}
 
 	public String getCheckBoxStatus() {
@@ -386,7 +385,7 @@ public class addBook extends JPanel{
 		} else if (chckbxReedicion.isSelected()) {
 			return chckbxReedicion.getText();
 		}
-		return null;
+		return "";
 	}
 
 	public JTextField getTxtTitulo() {

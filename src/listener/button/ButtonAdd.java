@@ -45,22 +45,4 @@ public class ButtonAdd implements ActionListener {
 				ui.getAddbook().getTxtNpag().getText(), ui.getAddbook().getTextPrecio().getText(), ui.getCheckBoxTipe(),
 				ui.getCheckBoxStatus(), ui.getAddbook().getSpnCantidad().getValue().toString());
 	}
-	
-	public boolean isNumeric(String word, String palabra) {
-		try {
-			Integer.parseInt(word);
-			Integer.parseInt(palabra);
-			return true;
-		} catch (NumberFormatException e) {
-			return false;
-		}
-	}
-
-	public boolean isSelected() {
-		if (ui.getAddbook().getTipe().getSelection().isSelected()
-				&& ui.getAddbook().getStatus().getSelection().isSelected()) {
-			return true;
-		}
-		return false;
-	}
 }

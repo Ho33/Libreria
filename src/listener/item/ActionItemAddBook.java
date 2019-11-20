@@ -21,10 +21,7 @@ public class ActionItemAddBook implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-//		this.ui.getAddbook().enableField();
-//		this.ui.getAddbook().emptyField();
 		this.ui.asociarPanel("addbook");
-//		addLibro addLibro = new addLibro();
 		this.ui.getAddbook().getComboTema().removeAllItems();
 		for (Tema tema : Tema.values()) {
 			this.ui.getAddbook().getComboTema().addItem(tema);

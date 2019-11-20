@@ -32,7 +32,7 @@ public class TxtISBN implements KeyListener {
 	@Override
 	public void keyReleased(KeyEvent e) {
 		String txtISBN = ui.getAddbook().getTxtISBN().getText();
-		if (isLongitud(txtISBN.length()) &&  this.ui.getControl().compareISBN(txtISBN)) {
+		if (isLongitud(txtISBN.length()) && this.ui.getControl().compareISBN(txtISBN)) {
 			this.ui.getAddbook().getBtnModificar().setEnabled(true);
 			this.ui.getAddbook().getTxtISBN().setEnabled(false);
 			fillTxt(txtISBN);
@@ -49,25 +49,17 @@ public class TxtISBN implements KeyListener {
 			this.ui.getAddbook().getTxtNpag().setText(libro.getNumeroPag());
 			this.ui.getAddbook().getTextPrecio().setText(libro.getPrecio());
 			this.ui.getAddbook().getSpnCantidad().setValue(Integer.valueOf(libro.getCantidad()));
-			
+
 		}
 	}
 
-	private boolean  isLongitud(int txtISBN) {
+	private boolean isLongitud(int txtISBN) {
 		if (txtISBN == 13 && isNumeric(ui.getAddbook().getTxtISBN().getText()) || txtISBN == 0) {
 			ui.getAddbook().getTxtISBN().setBackground(Color.white);
 			return true;
 		} else
 			ui.getAddbook().getTxtISBN().setBackground(Color.red);
 		return false;
-	}
-	
-
-	private static boolean isWord(String word) {
-		if (word.isEmpty()) {
-			return false;
-		}
-		return Pattern.matches("[a-zA-Z]+", word);
 	}
 
 	public boolean isNumeric(String word) {
@@ -77,15 +69,5 @@ public class TxtISBN implements KeyListener {
 		} catch (NumberFormatException e) {
 			return false;
 		}
-	}
-
-	public void soloNumeros(Component component) {
-		component.addKeyListener(new KeyAdapter() {
-			public void keyTyped(KeyEvent e) {
-				if ((e.getKeyChar() < '0' || e.getKeyChar() > '9')) {
-					e.consume();
-				}
-			}
-		});
 	}
 }

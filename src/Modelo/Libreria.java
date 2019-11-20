@@ -71,14 +71,16 @@ public class Libreria implements Serializable {
 	}
 	
 	public String[] getBookFields(Libro libro) {
-		String [] result = new String[8];
+		String [] result = new String[9];
 		result[0] = libro.getTitulo();
 		result[1] = libro.getAutor();
+		result[2] = libro.getTema();
 		result[3] = libro.getNumeroPag();
 		result[4] = libro.getFormato();
 		result[5] = libro.getEstado();
 		result[6] = libro.getPrecio();
 		result[7] = libro.getCantidad();
+		result[8] = libro.getISBN();
 		return result;
 		
 	}
