@@ -13,6 +13,10 @@ import javax.swing.JTable;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
+
+import Modelo.Libreria;
+import Modelo.Libro;
+
 import java.awt.GridLayout;
 
 public class showBook extends JPanel {
@@ -25,6 +29,7 @@ public class showBook extends JPanel {
 	private JButton btnMostrar = new JButton();
 	private JButton btnAddLibro;
 	private JButton btnEliminarCantidad;
+	private Libreria lib = new Libreria();
 
 	/**
 	 * Create the panel.
@@ -86,7 +91,11 @@ public class showBook extends JPanel {
 						.addComponent(lblTitulo, GroupLayout.PREFERRED_SIZE, 32, Short.MAX_VALUE).addContainerGap()));
 		panel.setLayout(gl_panel);
 		setLayout(groupLayout);
-		
+		try {
+			rellenarLibro(addFila());
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public String getIsbnRow() {
@@ -104,6 +113,24 @@ public class showBook extends JPanel {
 		tableLibros.setFont(new Font("Tahoma", Font.CENTER_BASELINE, 15));
 		tableLibros.setDefaultEditor(Object.class, null);
 		scrollPane.setViewportView(tableLibros);
+	}
+	
+	public String[][] addFila() throws IllegalAccessException {
+		String[][] retorno = new String[this.lib.getLibreria().size()][9];
+		int index = 0;
+		for (Libro lib : this.lib.getLibreria()) {
+			retorno[index][0] = lib.getISBN();
+			retorno[index][1] = lib.getTitulo();
+			retorno[index][2] = lib.getPrecio();
+			retorno[index][3] = lib.getCantidad();
+			retorno[index][4] = lib.getNumeroPag();
+			retorno[index][5] = lib.getFormato();
+			retorno[index][6] = lib.getEstado();
+			retorno[index][7] = lib.getTema().toString();
+			retorno[index][8] = lib.getAutor();
+			index++;
+		}
+		return retorno;
 	}
 
 	public String[][] getData() {

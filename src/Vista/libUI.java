@@ -54,16 +54,15 @@ public class libUI extends JFrame {
 		menuBar.add(jmenuAlta);
 		menuBar.add(jmenuLista);
 
-		this.contentPane.add(white, "white");
 		white.setLayout(new CardLayout(0, 0));
 		lblBienvenido.setFont(new Font("Tahoma", Font.PLAIN, 50));
 		lblBienvenido.setHorizontalAlignment(SwingConstants.CENTER);
 		
-		white.add(lblBienvenido, "name_81895743499600");
+		white.add(showBook, "name_81895743499600");
 		lblLaLibreriaSin.setHorizontalAlignment(SwingConstants.CENTER);
 		lblLaLibreriaSin.setFont(new Font("Tahoma", Font.PLAIN, 42));
-		this.contentPane.add(addBook, "addbook");
 		this.contentPane.add(showBook, "showbook");
+		this.contentPane.add(addBook, "addbook");
 		incluirItem(jmenuAlta, itemAddBook);
 		incluirItem(jmenuLista, itemListado);
 		incluirItem(jmenuAlta, itemTema);
