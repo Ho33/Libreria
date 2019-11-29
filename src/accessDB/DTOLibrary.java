@@ -33,22 +33,17 @@ public class DTOLibrary {
 		}
 	}
 
-	public ArrayList<Libro> readBooks() {
+	public ArrayList<Libro> readBooks() throws IllegalAccessException {
 		ArrayList<Libro> books = new ArrayList<Libro>();
-		CachedRowSet cachedRowSet;
+		CachedRowSet cachedRowSet = null;
 		try {
 			cachedRowSet = RowSetProvider.newFactory().createCachedRowSet();
 			cachedRowSet.populate(dao.executeSelect(sqlGetBooks()));
 			while (cachedRowSet.next()) {
-				books.add(new Libro(cachedRowSet.getString("titulo"), cachedRowSet.getString("autor"),
-						cachedRowSet.getString("isbn"), cachedRowSet.getString("tema"),
-						cachedRowSet.getString("numeroPags"), cachedRowSet.getString("precio"),
-						cachedRowSet.getString("formato"), cachedRowSet.getString("estado"),
-						cachedRowSet.getString("cantidad")));
+				books.add(crearLibroDesdeResultSet(cachedRowSet.getOriginalRow()));
 			}
 			cachedRowSet.close();
 		} catch (SQLException | IOException | IllegalArgumentException | SecurityException e) {
-			// TODO Auto-generated catch block
 			JOptionPane.showMessageDialog(null, "Internal Error");
 		}
 		return books;
@@ -63,6 +58,18 @@ public class DTOLibrary {
 
 	public void sqlDeleteBook(String isbn) {
 		this.executeUpdate("DELETE FROM LIBRO WHERE isbn = " + isbn);
+	}
+
+	private Libro crearLibroDesdeResultSet(ResultSet resultSet)
+			throws IOException, SQLException, IllegalArgumentException, IllegalAccessException, SecurityException {
+		HashMap<String, Object> datosLibro = new HashMap<>();
+		if (resultSet.first()) {
+			for (int i = 1; i <= resultSet.getMetaData().getColumnCount(); i++) {
+				datosLibro.put(resultSet.getMetaData().getColumnName(i), resultSet.getObject(i));
+			}
+			return new Libro(datosLibro);
+		}
+		return null;
 	}
 
 	public Libro sqlSearchBook(String isbn) {

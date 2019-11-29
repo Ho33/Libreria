@@ -1,13 +1,11 @@
 package listener.item;
 
-import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
-import javax.swing.JOptionPane;
-
-import Modelo.Tema;
-import Vista.addLibro;
 import control.paraUI;
 
 public class ActionItemAddBook implements ActionListener {
@@ -21,14 +19,18 @@ public class ActionItemAddBook implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		this.ui.asociarPanel("addbook");
+		ArrayList<String> temas;
 		this.ui.getAddbook().getComboTema().removeAllItems();
-		for (Tema tema : Tema.values()) {
-			this.ui.getAddbook().getComboTema().addItem(tema);
+		try {
+			temas = this.ui.getControl().getTema();
+			for (String tema : temas) {
+				this.ui.getAddbook().getComboTema().addItem(tema);
+			}
+			this.ui.asociarPanel("addbook");
+		} catch (IllegalArgumentException | IllegalAccessException | SecurityException | IOException
+				| SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
 		}
 	};
-	
 }
-
-
-

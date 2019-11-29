@@ -1,6 +1,7 @@
 package control;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import Modelo.Libreria;
@@ -19,8 +20,9 @@ public class Control {
 
 	public void addLb(String titulo, String autor, String isbn, String tema, String numeroPag, String precio,
 			String checkTipe, String checkStatus, String cantidad) throws IOException {
-		if(validate.executeValidate(this.lib.getBookFields(new Libro(titulo, autor, isbn, tema, numeroPag, precio, checkTipe, checkStatus, cantidad)))) {
-			lib.addLB(titulo, autor, isbn, tema, numeroPag, precio, checkTipe, checkStatus, cantidad);			
+		if (validate.executeValidate(this.lib.getBookFields(
+				new Libro(titulo, autor, isbn, tema, numeroPag, precio, checkTipe, checkStatus, cantidad)))) {
+			lib.addLB(titulo, autor, isbn, tema, numeroPag, precio, checkTipe, checkStatus, cantidad);
 		}
 	}
 
@@ -52,11 +54,15 @@ public class Control {
 		lib.deleteLB(lib.getBook(isbn));
 	}
 
-	public String[][] addFila() {
+	public ArrayList<String> getTema() throws IllegalArgumentException, IllegalAccessException, SecurityException, IOException, SQLException {
+		return this.lib.getTema();
+	}
+
+	public String[][] addFila() throws IllegalAccessException {
 		return this.lib.addFila();
 	}
 
-	public ArrayList<Libro> getLib() {
+	public ArrayList<Libro> getLib() throws IllegalAccessException {
 		return lib.getLibreria();
 	}
 

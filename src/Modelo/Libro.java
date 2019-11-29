@@ -11,11 +11,19 @@ public class Libro implements Serializable {
 	private String autor;
 	private String isbn;
 	private String tema;
-	private String numeroPag;
+	private String numeroPags;
 	private String precio;
 	private String formato;
 	private String estado;
 	private String cantidad;
+	
+	
+	public Libro(HashMap<String, Object> datosLibro) throws IllegalArgumentException, IllegalAccessException, SecurityException {
+	    Field[] declaredFields = this.getClass().getDeclaredFields();
+	    for (int i = 0; i < declaredFields.length; i++) {
+	      declaredFields[i].set(this, datosLibro.get(declaredFields[i].getName()));
+	    }
+	  }
 
 	public Libro(String titulo, String autor, String iSBN, String tema, String numeroPag, String precio, String formato,
 			String estado, String cantidad) {
@@ -24,7 +32,7 @@ public class Libro implements Serializable {
 		this.autor = autor;
 		this.isbn = iSBN;
 		this.tema = tema;
-		this.numeroPag = numeroPag;
+		this.numeroPags = numeroPag;
 		this.formato = formato;
 		this.estado = estado;
 		this.precio = precio;
@@ -46,22 +54,12 @@ public class Libro implements Serializable {
 		int result = Integer.parseInt(this.cantidad) - cantidad;
 		if (result >= 0) {
 			this.cantidad = String.valueOf(result);
+		}else {
+			this.cantidad = "0";
 		}
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((isbn == null) ? 0 : isbn.hashCode());
-		return result;
-	}
 
-	@Override
-	public boolean equals(Object obj) {
-		Libro other = (Libro) obj;
-		return isbn.equals(other.isbn);
-	}
 
 	public String getTitulo() {
 		return titulo;
@@ -80,7 +78,7 @@ public class Libro implements Serializable {
 	}
 
 	public String getNumeroPag() {
-		return numeroPag;
+		return numeroPags;
 	}
 
 	public String getFormato() {
@@ -120,7 +118,7 @@ public class Libro implements Serializable {
 	}
 
 	public void setNumeroPag(String numeroPag) {
-		this.numeroPag = numeroPag;
+		this.numeroPags = numeroPag;
 	}
 
 	public void setPrecio(String precio) {

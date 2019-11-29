@@ -45,7 +45,12 @@ public class paraUI extends libUI {
 	}
 
 	public void fillRow() {
-		rellenarLib(this.control.addFila());
+		try {
+			rellenarLib(this.control.addFila());
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public Control getControl() {

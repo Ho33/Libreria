@@ -17,13 +17,13 @@ class ControlTest {
 	Control instance = new Control();
 
 	@Test
-	void testCompareISBN() {
+	void testCompareISBN() throws IllegalAccessException {
 		String tocompare = instance.getLib().get(0).getISBN();
 		assertTrue(instance.compareISBN(tocompare));
 	}
 
 	@Test
-	void testAumentarCantidad() {
+	void testAumentarCantidad() throws IllegalAccessException {
 		String isbn = instance.getLib().get(0).getISBN();
 		int cantidad = 15;
 		try {
@@ -37,13 +37,13 @@ class ControlTest {
 	}
 
 	@Test
-	void testGetLibro() {
+	void testGetLibro() throws IllegalAccessException {
 		Libro toCompare = instance.getLibro(instance.getLib().get(0).getISBN());
 		assertEquals(toCompare, instance.getLib().get(0));
 	}
 
 	@Test
-	void testDeleteBook() {
+	void testDeleteBook() throws IllegalAccessException {
 		String isbn = instance.getLib().get(0).getISBN();
 		try {
 			instance.deleteBook(isbn);

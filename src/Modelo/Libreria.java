@@ -6,16 +6,21 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import javax.swing.JOptionPane;
+
 import accessDB.DTOLibrary;
+import accessDB.DTOTema;
 
 public class Libreria implements Serializable {
 
 	private DTOLibrary dtoLibreria;
+	private DTOTema dtotema;
 	private String nameDB = "Library";
 
 	public Libreria() {
 		super();
 		this.dtoLibreria = new DTOLibrary(this.nameDB);
+		this.dtotema = new DTOTema(this.nameDB);
 	}
 
 	public void addLB(String titulo, String autor, String isbn, String tema, String numeroPag, String precio,
@@ -25,7 +30,12 @@ public class Libreria implements Serializable {
 	}
 
 	public void deleteLB(Libro deleteLB) {
-		this.dtoLibreria.sqlDeleteBook(deleteLB.getISBN());
+		Libro librito = dtoLibreria.sqlSearchBook(deleteLB.getISBN());
+		if (librito.getCantidad().equals("0")) {
+			this.dtoLibreria.sqlDeleteBook(deleteLB.getISBN());
+		}else {
+			JOptionPane.showMessageDialog(null, "Aún tienes stok disponible, no es posible elminar el libro");
+		}
 	}
 
 	public void deletelibIfCantidad(String isbn, int cantidad) {
@@ -51,8 +61,13 @@ public class Libreria implements Serializable {
 	public void modifyBook(Libro libro){
 		this.dtoLibreria.sqlModifyBook(libro);
 	}
+	
+	public ArrayList<String> getTema() throws IllegalArgumentException, IllegalAccessException, SecurityException, IOException, SQLException {
+		return this.dtotema.leer();
+		
+	}
 
-	public String[][] addFila() {
+	public String[][] addFila() throws IllegalAccessException {
 		String[][] retorno = new String[this.getLibreria().size()][9];
 		int index = 0;
 		for (Libro lib : this.getLibreria()) {
@@ -82,10 +97,9 @@ public class Libreria implements Serializable {
 		result[7] = libro.getCantidad();
 		result[8] = libro.getISBN();
 		return result;
-		
 	}
 
-	public ArrayList<Libro> getLibreria() {
+	public ArrayList<Libro> getLibreria() throws IllegalAccessException {
 		return dtoLibreria.readBooks();
 	}
 }
