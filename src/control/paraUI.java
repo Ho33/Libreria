@@ -32,7 +32,7 @@ public class paraUI extends libUI {
 		// Listener Items
 		getItemListado().addActionListener(new ActionItemShowBook(this));
 		getItemAddBook().addActionListener(new ActionItemAddBook(this));
-		getItemTema().addActionListener(new ActionItemTema(this));
+		getItemTema().addActionListener(new ActionItemTema());
 		// Listener Buttons
 		getAddbook().getBtnExit().addActionListener(new ButtonExit());
 		getAddbook().getBtnAltas().addActionListener(new ButtonAdd(this));

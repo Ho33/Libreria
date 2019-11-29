@@ -33,7 +33,7 @@ public class Libreria implements Serializable {
 		Libro librito = dtoLibreria.sqlSearchBook(deleteLB.getISBN());
 		if (librito.getCantidad().equals("0")) {
 			this.dtoLibreria.sqlDeleteBook(deleteLB.getISBN());
-		}else {
+		} else {
 			JOptionPane.showMessageDialog(null, "Aún tienes stok disponible, no es posible elminar el libro");
 		}
 	}
@@ -57,15 +57,31 @@ public class Libreria implements Serializable {
 	public boolean compareIsbn(String isbn) {
 		return this.getBook(isbn) != null;
 	}
-	
-	public void modifyBook(Libro libro){
+
+	public void modifyBook(Libro libro) {
 		this.dtoLibreria.sqlModifyBook(libro);
 	}
-	
-	public ArrayList<String> getTema() throws IllegalArgumentException, IllegalAccessException, SecurityException, IOException, SQLException {
-		return this.dtotema.leer();
+
+	public ArrayList<String> getTema()
+			throws IllegalArgumentException, IllegalAccessException, SecurityException, IOException, SQLException {
+		return this.dtotema.read();
 	}
 
+	public void addTheme(String theme) {
+		try {
+			this.dtotema.saveTheme(theme);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	public void deleteTheme(String theme) {
+		try {
+			this.dtotema.deleteTheme(theme);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public String[][] addFila() throws IllegalAccessException {
 		String[][] retorno = new String[this.getLibreria().size()][9];
 		int index = 0;
@@ -83,9 +99,9 @@ public class Libreria implements Serializable {
 		}
 		return retorno;
 	}
-	
+
 	public String[] getBookFields(Libro libro) {
-		String [] result = new String[9];
+		String[] result = new String[9];
 		result[0] = libro.getTitulo();
 		result[1] = libro.getAutor();
 		result[2] = libro.getTema();

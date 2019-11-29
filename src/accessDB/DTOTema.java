@@ -17,20 +17,44 @@ public class DTOTema {
 		this.nameDB = "jdbc:mysql://localhost/" + nombreBaseDatos;
 		this.dao = new DAO(id, password, nameDB);
 	}
-	
-	public ArrayList<String> leer()
+
+	public ArrayList<String> read()
 			throws IOException, SQLException, IllegalArgumentException, IllegalAccessException, SecurityException {
 		ArrayList<String> temas = new ArrayList<>();
 		CachedRowSet cachedRowSet = RowSetProvider.newFactory().createCachedRowSet();
-		cachedRowSet.populate(dao.executeSelect(sqlObtenerTemas()));
+		cachedRowSet.populate(dao.executeSelect(sqlGetThemes()));
 		while (cachedRowSet.next()) {
 			temas.add(cachedRowSet.getString(1));
 		}
 		cachedRowSet.close();
 		return temas;
 	}
-	
-	private String sqlObtenerTemas() {
+
+	private String sqlGetThemes() {
 		return "SELECT * FROM `tema` ";
+	}
+
+	public boolean saveTheme(String tema) throws IOException {
+		try {
+			return dao.executeUpdate(sqlInsertTheme(tema));
+		} catch (SQLException e) {
+			return false;
+		}
+	}
+
+	private String sqlInsertTheme(String tema) {
+		return "INSERT INTO `tema` (`tema`) VALUES ('" + tema + "');";
+	}
+
+	public boolean deleteTheme(String tema) throws IOException {
+		try {
+			return dao.executeUpdate(sqlDeleteTheme(tema));
+		} catch (SQLException e) {
+			return false;
+		}
+	}
+
+	private String sqlDeleteTheme(String tema) {
+		return "DELETE FROM `tema` WHERE `tema` = '" + tema + "'";
 	}
 }

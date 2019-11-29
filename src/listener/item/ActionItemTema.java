@@ -11,12 +11,6 @@ import Vista.aboutTheme;
 import control.paraUI;
 
 public class ActionItemTema implements ActionListener {
-	private paraUI ui;
-
-	public ActionItemTema(paraUI ui) {
-		super();
-		this.ui = ui;
-	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -24,7 +18,6 @@ public class ActionItemTema implements ActionListener {
 			new aboutTheme();
 		} catch (IllegalArgumentException | IllegalAccessException | SecurityException | IOException
 				| SQLException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 	}
