@@ -23,6 +23,7 @@ public class libUI extends JFrame {
 	protected showBook showBook = new showBook();
 	protected JMenuItem itemAddBook = new JMenuItem("Nuevo");
 	protected JMenuItem itemListado = new JMenuItem("Mostrar");
+	protected JMenuItem itemTema = new JMenuItem("Añadir tema");
 	private JMenu jmenuLista;
 	private JPanel white = new JPanel();
 	private final JLabel lblLaLibreriaSin = getAddbook().addImage("/lib.png");
@@ -65,6 +66,7 @@ public class libUI extends JFrame {
 		this.contentPane.add(showBook, "showbook");
 		incluirItem(jmenuAlta, itemAddBook);
 		incluirItem(jmenuLista, itemListado);
+		incluirItem(jmenuAlta, itemTema);
 
 	}
 
@@ -129,4 +131,9 @@ public class libUI extends JFrame {
 	public JButton getEditar() {
 		return editar;
 	}
+
+	public JMenuItem getItemTema() {
+		return itemTema;
+	}
+	
 }

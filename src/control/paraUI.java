@@ -17,6 +17,7 @@ import listener.button.ButtonNew;
 import listener.button.WindownClose;
 import listener.item.ActionItemAddBook;
 import listener.item.ActionItemShowBook;
+import listener.item.ActionItemTema;
 import listener.txtField.TxtISBN;
 
 public class paraUI extends libUI {
@@ -31,6 +32,7 @@ public class paraUI extends libUI {
 		// Listener Items
 		getItemListado().addActionListener(new ActionItemShowBook(this));
 		getItemAddBook().addActionListener(new ActionItemAddBook(this));
+		getItemTema().addActionListener(new ActionItemTema(this));
 		// Listener Buttons
 		getAddbook().getBtnExit().addActionListener(new ButtonExit());
 		getAddbook().getBtnAltas().addActionListener(new ButtonAdd(this));

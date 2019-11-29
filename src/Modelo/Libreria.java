@@ -64,7 +64,6 @@ public class Libreria implements Serializable {
 	
 	public ArrayList<String> getTema() throws IllegalArgumentException, IllegalAccessException, SecurityException, IOException, SQLException {
 		return this.dtotema.leer();
-		
 	}
 
 	public String[][] addFila() throws IllegalAccessException {
